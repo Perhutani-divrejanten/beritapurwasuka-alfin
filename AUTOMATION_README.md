@@ -4,17 +4,36 @@ Saya telah membuat sistem otomatis untuk generate **34 folder website portal ber
 
 ---
 
+## ⚙️ Eksekusi Rebrand PowerShell
+
+Untuk rebrand `berita purwasuka` dengan encoding UTF-8 dan backup `articles.json.bak`, jalankan dari root project:
+
+```powershell
+Set-Location .
+PowerShell -ExecutionPolicy Bypass -File .\rebrand-to-berita-purwasuka.ps1
+```
+
+Inti proses HTML memakai pola berikut agar semua halaman ikut diperbarui konsisten:
+
+```powershell
+Get-ChildItem -Recurse -Include *.html | ForEach-Object {
+    # replace branding, logo teks, warna, dan normalisasi quotation encoding
+}
+```
+
+---
+
 ## 📋 File yang Dibuat
 
 ### 1. **`tools/sites-config.json`**
 Template konfigurasi untuk 34 portal berita. Berisi:
 - **folderName**: Nama folder untuk setiap site (site-01, site-02, dst)
 - **siteName**: Nama portal berita (akan replace "BizNews")
-- **email**: Email portal (akan replace "IndonesiaDaily33@gmail.com")
-- **socialHandle**: Handle social media (akan replace "indonesiadaily")
+- **email**: Email portal (akan replace "beritapurwasuka@gmail.com")
+- **socialHandle**: Handle social media (akan replace "beritapurwasuka")
 - **colors**: Tema warna
-  - **primary**: Warna utama kuning (contoh: #FFCC00 → custom)
-  - **dark**: Warna gelap hitam (contoh: #1E2024 → custom)
+  - **primary**: Warna utama kuning (contoh: #92400E → custom)
+  - **dark**: Warna gelap hitam (contoh: #3B1F07 → custom)
   - **secondary**: Warna sekunder
 
 ### 2. **`tools/generate-sites.js`**
@@ -114,12 +133,12 @@ Script akan mengganti di **semua file** (.html, .css, .js):
 | Yang Direplac | Diganti Dengan |
 |---|---|
 | `BizNews` | `siteName` dari config |
-| `IndonesiaDaily` | `siteName` (tanpa spaces) |
-| `indonesiadaily` | `socialHandle` |
-| `IndonesiaDaily33@gmail.com` | `email` |
-| `#FFCC00` (primary) | Warna primary dari config |
-| `#1E2024` (dark) | Warna dark dari config |
-| `#31404B` (secondary) | Warna secondary dari config |
+| `beritapurwasuka` | `siteName` (tanpa spaces) |
+| `beritapurwasuka` | `socialHandle` |
+| `beritapurwasuka@gmail.com` | `email` |
+| `#92400E` (primary) | Warna primary dari config |
+| `#3B1F07` (dark) | Warna dark dari config |
+| `#6B3D51` (secondary) | Warna secondary dari config |
 
 ---
 
